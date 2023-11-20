@@ -3,6 +3,9 @@ import {
   APPLY_NUMBER,
   CHANGE_OPERATION,
   CLEAR_DISPLAY,
+  MEMORY_SAVE,
+  MEMORY_RECALL,
+  MEMORY_CLEAR,
 } from "./../actions";
 
 export const initialState = {
@@ -44,11 +47,31 @@ const reducer = (state, action) => {
         operation: action.payload,
       };
     case CLEAR_DISPLAY:
+      console.log("CLEAR DISPLAY");
       return {
         ...state,
         total: action.payload,
       };
 
+    case MEMORY_SAVE:
+      console.log("MEMORY SAVE");
+      return {
+        ...state,
+        memory: action.payload,
+      };
+
+    case MEMORY_RECALL:
+      console.log("MEMORY RECALL", state.memory);
+      return {
+        ...state,
+        total: state.total + action.payload,
+      };
+    case MEMORY_CLEAR:
+      console.log("MEMORY CLEAR");
+      return {
+        ...state,
+        memory: action.payload,
+      };
     default:
       return state;
   }

@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { memo, useReducer } from "react";
 import TotalDisplay from "./components/TotalDisplay";
 import CalcButton from "./components/CalcButton";
 import reducer from "./reducers";
@@ -6,23 +6,30 @@ import { initialState } from "./reducers";
 import { applyNumber } from "./actions";
 import { changeOperation } from "./actions";
 import { clearDisplay } from "./actions";
+import { memorySave } from "./actions";
+import { memoryRecall } from "./actions";
+import { memoryClear } from "./actions";
 
 function App() {
   const [calculate, dispatchCalculate] = useReducer(reducer, initialState);
 
   const eventHandler = (num) => {
     dispatchCalculate(applyNumber(num));
-    console.log(applyNumber);
   };
-
+  console.log("CALCULATE TOTAL", calculate.total);
+  console.log("MEMORY RECALL", calculate);
   const operateHandler = (e) => {
     dispatchCalculate(changeOperation(e.target.value));
   };
 
   const clearHandler = (e) => {
     dispatchCalculate(clearDisplay());
-    console.log(clearDisplay);
   };
+
+  const addMemorySave = () => dispatchCalculate(memorySave(calculate.total));
+  const addMemoryRecall = () =>
+    dispatchCalculate(memoryRecall(calculate.memory));
+  const addMemoryClear = () => dispatchCalculate(memoryClear());
 
   return (
     <div className="App">
@@ -44,9 +51,9 @@ function App() {
             </div>
 
             <div className="row">
-              <CalcButton value={"M+"} />
-              <CalcButton value={"MR"} />
-              <CalcButton value={"MC"} />
+              <CalcButton value={"M+"} onClick={() => addMemorySave()} />
+              <CalcButton value={"MR"} onClick={() => addMemoryRecall()} />
+              <CalcButton value={"MC"} onClick={() => addMemoryClear()} />
             </div>
 
             <div className="row">

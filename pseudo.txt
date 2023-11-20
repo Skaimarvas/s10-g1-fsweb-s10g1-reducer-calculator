@@ -1,0 +1,48 @@
+const[state,dispatch] = useReducer(reducer,initialArg);
+
+{
+    state.operation: "",
+    state.memory: "",
+    state.total: "",
+}
+
+const template = { (state,action)
+
+  switch(state)
+
+  case "+"
+  return  state.operation = "+";
+
+  case "-"
+  return  state.operation = "-";
+
+  case "*"
+  return  state.operation = "*";
+
+  case "/"
+  return  state.operation = "/";
+
+  default 
+  return state.operation;
+
+  case 
+
+  return state state.operation  
+}
+
+
+const [calculate, dispatchCalculate] = useReducer(calculateReducer, )
+
+
+İşlemler : 
+
+Toplama
+Çıkarma 
+Bölme
+Çarpma 
+
+sıfırlama
+
+hafızaya alma 
+hafızadakı sayı ile işlem yapma 
+hafızayı silme 
